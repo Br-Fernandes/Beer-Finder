@@ -7,8 +7,8 @@
 
     <ScrollView
         android:id="@+id/brands_sv"
-        android:layout_width="963dp"
-        android:layout_height="1711dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/beer_brands_found"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

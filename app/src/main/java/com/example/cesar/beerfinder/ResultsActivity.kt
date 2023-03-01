@@ -8,23 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 
 class ResultsActivity : AppCompatActivity() {
 
-    private lateinit var scrollView: ScrollView
 
-    @SuppressLint("MissingInflatedId")
+
+    @SuppressLint("MissingInflatedId", "DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_results)
 
 
-        val searchButton = findViewById<Button>(R.id.search_brands_btn)
-        val beerTypeSpinner = findViewById<Spinner>(R.id.spinner)
-
-        val selectedBeerType = beerTypeSpinner.selectedItem.toString()
+        lateinit var scrollView: ScrollView
+        val selectedBeerType = intent.getStringExtra("selectedItem")
         val expertCerveja = ExpertCerveja()
         val marcas = expertCerveja.getMarcas(selectedBeerType)
 
-        val scrollView_Layout = LinearLayout(this)
+        val scrollViewLayout = LinearLayout(this)
 
         if (marcas != null) {
             for (marca in marcas) {
@@ -32,10 +29,10 @@ class ResultsActivity : AppCompatActivity() {
                 val textView = TextView(this)
                 textView.text = marca
 
-                //create and configure a new ImageVeiw
+                //create and configure a new ImageView
                 val res = resources
                 val imageName = styleImageName(marca)
-                val id = res.getIdentifier("$imageName", "drawable", packageName)
+                val id = res.getIdentifier(imageName, "drawable", packageName)
                 val imageView = ImageView(this)
                 imageView.setImageResource(id)
 
@@ -52,13 +49,13 @@ class ResultsActivity : AppCompatActivity() {
                 linearLayout.addView(textView, paramsLayout)
                 linearLayout.addView(imageView, paramsLayout)
 
-                scrollView_Layout.orientation = LinearLayout.VERTICAL
-                scrollView_Layout.addView(linearLayout)
+                scrollViewLayout.orientation = LinearLayout.VERTICAL
+                scrollViewLayout.addView(linearLayout)
 
 
             }
             scrollView = findViewById(R.id.brands_sv)
-            scrollView.addView(scrollView_Layout)
+            scrollView.addView(scrollViewLayout)
         }
     }
 

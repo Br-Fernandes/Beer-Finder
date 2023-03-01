@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val spinner: Spinner = findViewById(R.id.spinner)
+        val searchButton = findViewById<Button>(R.id.search_brands_btn)
 
         ArrayAdapter.createFromResource(
             this,
@@ -26,10 +27,10 @@ class MainActivity : AppCompatActivity() {
             spinner.adapter = adapter
         }
 
-        val searchButton = findViewById<Button>(R.id.search_brands_btn)
-
         searchButton.setOnClickListener {
+            val selectedItem: String? = spinner.selectedItem.toString()
             val intent = Intent(this, ResultsActivity::class.java)
+            intent.putExtra("selectedItem", selectedItem!!)
             startActivity(intent)
         }
     }

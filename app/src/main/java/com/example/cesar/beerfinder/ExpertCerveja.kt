@@ -8,7 +8,7 @@ class ExpertCerveja {
         "Lambic" to listOf("Cantillon", "Drie Fonteinen", "Hanssens")
     )
 
-    fun getMarcas(tipo: String): List<String>? {
+    fun getMarcas(tipo: String?): List<String>? {
         return brandByBeerType[tipo]
     }
 
