@@ -1,6 +1,8 @@
 package com.example.cesar.beerfinder
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -29,12 +31,9 @@ class ResultsActivity : AppCompatActivity() {
                 val textView = TextView(this)
                 textView.text = marca
 
-                //create and configure a new ImageView
-                val res = resources
-                val imageName = styleImageName(marca)
-                val id = res.getIdentifier(imageName, "drawable", packageName)
-                val imageView = ImageView(this)
-                imageView.setImageResource(id)
+                
+                val imageView = createNewImageView(marca)
+
 
                 val linearLayout = LinearLayout(this)
                 linearLayout.orientation = LinearLayout.HORIZONTAL
@@ -58,6 +57,27 @@ class ResultsActivity : AppCompatActivity() {
             scrollView.addView(scrollViewLayout)
         }
     }
+
+    fun createNewImageView(imageName: String): ImageView {
+        val res = resources
+        val styledImageName = styleImageName(imageName)
+        val id = res.getIdentifier(styledImageName, "drawable", packageName)
+
+        val imageView = ImageView(this)
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        imageView.layoutParams = layoutParams
+
+        val bitmap = BitmapFactory.decodeResource(res, id)
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 250, 400, false)
+        imageView.setImageBitmap(resizedBitmap)
+        imageView.scaleType = ImageView.ScaleType.FIT_CENTER
+
+        return imageView
+    }
+
 
     private fun styleImageName(name: String): String{
         var nameSplit = name.split(" ")
