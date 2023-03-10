@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Beer Finder</string>
+    <string name="select_beer_type_title">Selecione um tipo de cerveja</string>
     <string name="select_beer_type">Select a beer type</string>
-    <string name="search_btn">Search</string>
+    <string name="search_btn">Buscar</string>
     <string name="beer_brands_found">Beer Brands found</string>
     <string-array name="beer_type_array">
         <item>Lager</item>

@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +45,7 @@ class ResultsActivity : AppCompatActivity() {
                         setMargins(16, 16, 16, 16)
                     }
                 }
-
+                linearLayout.setBackgroundResource(R.drawable.border_bottom)
                 linearLayout.addView(textView)
                 linearLayout.addView(imageView)
 
@@ -66,10 +67,12 @@ class ResultsActivity : AppCompatActivity() {
             1.0f
         )
 
-        textParams.gravity = Gravity.START
+        textParams.gravity = Gravity.CENTER
         textParams.setMargins(16, 16, 16, 16)
         textView.layoutParams = textParams
+        textView.textSize = 20f
         textView.text = text
+        textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
         return textView
     }
