@@ -4,6 +4,8 @@
     <string name="select_beer_type">Select a beer type</string>
     <string name="search_btn">Buscar</string>
     <string name="beer_brands_found">Beer Brands found</string>
+    <string name="main_title">Consultor de Cerveja: Bruno César</string>
+    <string name="results_title">Marcas de cerveja do tipo: </string>
     <string-array name="beer_type_array">
         <item>Lager</item>
         <item>Ale</item>

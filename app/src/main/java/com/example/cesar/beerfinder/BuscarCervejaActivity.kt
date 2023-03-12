@@ -3,12 +3,10 @@ package com.example.cesar.beerfinder
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
-
+class BuscarCervejaActivity : AppCompatActivity() {
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +15,9 @@ class MainActivity : AppCompatActivity() {
 
         val spinner: Spinner = findViewById(R.id.spinner)
         val searchButton = findViewById<Button>(R.id.search_brands_btn)
+
+        setSupportActionBar(findViewById(R.id.toolbar_main))
+        supportActionBar?.title = "${resources.getString(R.string.main_title)}"
 
         ArrayAdapter.createFromResource(
             this,
@@ -34,8 +35,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
-
-
 }

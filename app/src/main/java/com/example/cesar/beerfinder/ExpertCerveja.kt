@@ -11,5 +11,4 @@ class ExpertCerveja {
     fun getMarcas(tipo: String?): List<String>? {
         return brandByBeerType[tipo]
     }
-
 }

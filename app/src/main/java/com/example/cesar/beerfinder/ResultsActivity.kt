@@ -1,6 +1,7 @@
 package com.example.cesar.beerfinder
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -8,23 +9,26 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.example.cesar.beerfinder.R.style.MyCustomActionBarTitleStyle
 
 
 class ResultsActivity : AppCompatActivity() {
 
-
-
-    @SuppressLint("MissingInflatedId", "DiscouragedApi")
+    @SuppressLint("MissingInflatedId", "DiscouragedApi", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
-
 
         lateinit var scrollView: ScrollView
         val selectedBeerType = intent.getStringExtra("selectedItem")
         val expertCerveja = ExpertCerveja()
         val marcas = expertCerveja.getMarcas(selectedBeerType)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.title = "${resources.getString(R.string.results_title)} $selectedBeerType"
 
         val scrollViewLayout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -73,6 +77,8 @@ class ResultsActivity : AppCompatActivity() {
         textView.textSize = 20f
         textView.text = text
         textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        textView.setTextColor(ContextCompat.getColor(this, R.color.red))
+        textView.setShadowLayer(2f, 1f, 1f, ContextCompat.getColor(this, R.color.text_shadow))
 
         return textView
     }
@@ -92,14 +98,12 @@ class ResultsActivity : AppCompatActivity() {
         layoutParams.setMargins(16, 16, 16, 16)
         imageView.layoutParams = layoutParams
 
-
         val bitmap = BitmapFactory.decodeResource(res, id)
         val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 350, 600, false)
         imageView.setImageBitmap(resizedBitmap)
 
         return imageView
     }
-
 
     private fun styleImageName(name: String): String{
         var nameSplit = name.split(" ")
